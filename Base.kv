@@ -1,0 +1,64 @@
+<Base@FloatLayout>:
+
+    #Image:
+      #  source: 'bg3.jpg'
+       # size: root.width, root.height
+      #  allow_stretch: True
+    #    keep_ratio: False
+
+
+    MDBottomAppBar:
+        id: bottom_app_bar
+        md_bg_color: '#57119e'
+
+
+    MDNavigationLayout:
+        MDTopAppBar:
+            id: top_app_bar
+            title: "Movie Recommendation System"
+            pos_hint: {"top": 1}
+            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+            right_action_items: [["login", lambda x: app.root.get_screen('home').switch_screen('login'), "Login"], ["account-plus", lambda x: app.root.get_screen('home').switch_screen('register'), "Register"]]
+            elevation: 3
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+            md_bg_color: '#57119e'
+            MDNavigationDrawerMenu:
+                MDNavigationDrawerHeader:
+                    title: "Movie Rec"
+                    text: "Menu"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+                MDNavigationDrawerLabel:
+                    text: "Home"
+
+                DrawerClickableItem:
+                    icon: "home"
+                    text: "Home"
+                    theme_text_color: "Custom"
+                    text_color: '#57119e'
+                    on_release: app.root.get_screen('home').switch_screen('home')
+
+                DrawerClickableItem:
+                    icon: "plus"
+                    text: "Add Review"
+                    theme_text_color: "Custom"
+                    text_color: '#57119e'
+                    on_release: app.root.get_screen('home').switch_screen('add_review')
+
+                DrawerClickableItem:
+                    icon: "book"
+                    text: "Recommend Movie by Similarity"
+                    theme_text_color: "Custom"
+                    text_color: '#57119e'
+                    on_release: app.root.get_screen('home').switch_screen('recommend_similarity')
+
+                DrawerClickableItem:
+                    icon: "movie"
+                    text: "Recommend Movie by Rating"
+                    theme_text_color: "Custom"
+                    text_color: '#57119e'
+                    on_release: app.root.get_screen('home').switch_screen('recommend_rating')

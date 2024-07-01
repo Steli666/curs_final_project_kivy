@@ -1,0 +1,31 @@
+<RecommendRating>:
+    MDLabel:
+        id: rec_type
+        text: "Recommend Movie by Rating\n (movies that were highly rated by users who watched and liked this one)"
+        halign: 'center'
+        valign: 'top'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        font_style: 'H5'
+
+    MDTextField:
+        id: search_field
+        hint_text: "Search"
+        size_hint_x: None
+        width: "300dp"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+    MDFloatingActionButton:
+        icon: "magnify"
+        pos_hint: {'center_x': 0.75, 'center_y': 0.7}
+        md_bg_color: app.theme_cls.primary_color
+        on_release: root.search(search_field.text)
+        type: "small"
+
+    ScrollView:
+        size_hint: 1, 0.8
+        pos_hint: {"top": 0.7}
+        MDList:
+            id: movie_list
+
+    Base:
+        id: BaseLayout

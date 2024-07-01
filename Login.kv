@@ -1,0 +1,28 @@
+<Login>:
+
+    MDFloatLayout:
+        Carousel:
+            id: slide
+            MDFloatLayout:
+                MDTextField:
+                    id: username
+                    hint_text: "Username"
+                    size_hint_x: .8
+                    pos_hint: {"center_x": .5, "center_y": .48}
+                MDTextField:
+                    id: password
+                    hint_text: "Password"
+                    size_hint_x: .8
+                    pos_hint: {"center_x": .5, "center_y": .36}
+                    password: True
+                MDRaisedButton:
+                    text: "LOGIN"
+                    size_hint_x: .8
+                    pos_hint: {"center_x": .5, "center_y": .2}
+                    on_release: root.login()
+
+        MDLabel:
+            text: "Login Form"
+            bold: True
+            pos_hint: {"center_x": .88, "center_y": .8}
+            font_style: "H4"
