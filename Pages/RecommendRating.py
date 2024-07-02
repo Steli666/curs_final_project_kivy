@@ -2,9 +2,12 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.list import OneLineListItem
 from kivymd.app import MDApp
 import csv
+from Pages.Home import Home
+from All import token_store, logout
 
 class RecommendRating(Screen):
-    # def on_enter(self):
+    def on_enter(self):
+        Home.update_right_action_items(self)
     #     self.load_movies()
 
     def load_movies(self):
@@ -35,3 +38,7 @@ class RecommendRating(Screen):
         app = MDApp.get_running_app()
         app.root.current = 'movie_detail'
         app.root.get_screen('movie_detail').display_movie_detail(title)
+
+    def logout(self):
+        logout(self)
+        self.manager.current = 'home'

@@ -1,7 +1,12 @@
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.menu import MDDropdownMenu
+from Pages.Home import Home
+from All import token_store, logout
 
 class MovieReview(Screen):
+    def on_enter(self):
+        Home.update_right_action_items(self)
+
     def display_movie_detail(self, title):
         self.ids.movie_title.text = title
 
@@ -37,3 +42,7 @@ class MovieReview(Screen):
 
     def movie_title(self, movie_title):
         self.ids.menu_for_movies.text = movie_title
+
+    def logout(self):
+        logout(self)
+        self.manager.current = 'home'

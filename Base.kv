@@ -11,7 +11,6 @@
         id: bottom_app_bar
         md_bg_color: '#57119e'
 
-
     MDNavigationLayout:
         MDTopAppBar:
             id: top_app_bar
@@ -24,7 +23,7 @@
         MDNavigationDrawer:
             id: nav_drawer
             radius: (0, 16, 16, 0)
-            md_bg_color: '#57119e'
+            md_bg_color: '#3a086e'
             MDNavigationDrawerMenu:
                 MDNavigationDrawerHeader:
                     title: "Movie Rec"
@@ -39,26 +38,35 @@
                     icon: "home"
                     text: "Home"
                     theme_text_color: "Custom"
-                    text_color: '#57119e'
+                    text_color: 'white'
                     on_release: app.root.get_screen('home').switch_screen('home')
 
                 DrawerClickableItem:
                     icon: "plus"
                     text: "Add Review"
                     theme_text_color: "Custom"
-                    text_color: '#57119e'
+                    text_color: 'white'
                     on_release: app.root.get_screen('home').switch_screen('add_review')
 
                 DrawerClickableItem:
                     icon: "book"
-                    text: "Recommend Movie by Similarity"
+                    text: "Recommend by Similarity"
                     theme_text_color: "Custom"
-                    text_color: '#57119e'
+                    text_color: 'white'
                     on_release: app.root.get_screen('home').switch_screen('recommend_similarity')
 
                 DrawerClickableItem:
                     icon: "movie"
-                    text: "Recommend Movie by Rating"
+                    text: "Recommend by Rating"
                     theme_text_color: "Custom"
-                    text_color: '#57119e'
+                    text_color: 'white'
                     on_release: app.root.get_screen('home').switch_screen('recommend_rating')
+                    #text_color: '#57119e'
+
+                DrawerClickableItem:
+                    icon: "history"
+                    text: "My Reviews"
+                    theme_text_color: "Custom"
+                    text_color: 'white'
+                    on_release: app.root.get_screen('home').switch_screen('my_reviews')
+                    #text_color: '#57119e'

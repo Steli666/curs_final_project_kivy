@@ -2,9 +2,12 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.list import OneLineListItem
 from kivymd.app import MDApp
 import csv
+from Pages.Home import Home
+from All import token_store, logout
 
 class AddReview(Screen):
     def on_enter(self):
+        Home.update_right_action_items(self)
         self.load_movies()
 
     def load_movies(self):
@@ -35,15 +38,6 @@ class AddReview(Screen):
         app.root.current = 'movie_detail'
         app.root.get_screen('movie_detail').display_movie_detail(title)
 
-    # def create_show_session_details_function(self, session_id):
-    #     def show_session_details_wrapper(instance):
-    #         self.show_session_details(session_id)
-    #
-    #     return show_session_details_wrapper
-    #
-    # def show_session_details(self, session_id):
-    #     self.manager.transition = SlideTransition(direction="left")
-    #     self.manager.current = "calculations_screen"
-    #
-    #     calculations_screen = self.manager.get_screen("calculations_screen")
-    #     calculations_screen.display_session_calculations(session_id)
+    def logout(self):
+        logout(self)
+        self.manager.current = 'home'
