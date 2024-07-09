@@ -11,14 +11,8 @@ class RecommendSimilarity(Screen):
         Home.update_right_action_items(self)
         # self.load_movies()
 
-    def load_movies(self):
-        self.movies = []
-        with open('movies1.csv', 'r') as csvfile:
-            reader = csv.reader(csvfile)
-            for row in reader:
-                title = row[1]
-                self.movies.append(title)
-        self.display_movies(self.movies)
+    def on_leave(self):
+        self.ids.search_field.text = ""
 
     def display_movies(self, movies):
         self.ids.movie_list.clear_widgets()

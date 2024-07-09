@@ -8,8 +8,8 @@
         font_style: 'H5'
 
     MDFlatButton:
-        text: "<-- Back"
-        pos_hint: {'center_x': 0.1, "center_y": 0.8}
+        text: "<- Back"
+        pos_hint: {'center_x': 0.09, "center_y": 0.85}
         on_release:
             app.root.current = 'add_review'
 
@@ -18,7 +18,7 @@
         text: "Rate this movie"
         size_hint: None, None
         size: 400, 400
-        pos_hint: {"center_x": 0.4, "center_y": 0.7}
+        pos_hint: {"center_x": 0.3, "center_y": 0.7}
         opacity: 1
         on_release: root.drop_down_menu_for_movies()
 
@@ -27,14 +27,15 @@
         text: "SUBMIT"
         size_hint: None, None
         size: 400, 400
-        pos_hint: {"center_x": 0.6, "center_y": 0.7}
+        pos_hint: {"center_x": 0.65, "center_y": 0.7}
         opacity: 1
+        on_release: root.submit_review()
 
     MDLabel:
         id: overview
         text: "1: Hate it, it was terrible and I won't watch it again\n2: I didn't like it, bad movie but still watchable\n3: Good movie, liked it\n4: Excellent movie, would watch it again\n5: Masterpiece, would watch it again, more than once"
         font_style: 'H6'
-        pos_hint: {'center_x': 0.6, "center_y": 0.3}
+        pos_hint: {'center_x': 0.53, "center_y": 0.3}
 
     Base:
         id: BaseLayout

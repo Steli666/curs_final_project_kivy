@@ -10,6 +10,9 @@ class AddReview(Screen):
         Home.update_right_action_items(self)
         self.load_movies()
 
+    def on_leave(self):
+        self.ids.search_field.text = ""
+
     def load_movies(self):
         self.movies = []
         with open('movies1.csv', 'r') as csvfile:
@@ -21,10 +24,13 @@ class AddReview(Screen):
 
     def display_movies(self, movies):
         self.ids.movie_list.clear_widgets()
-        for movie in movies:
-            self.ids.movie_list.add_widget(
-                OneLineListItem(text=movie, on_release=lambda x, m=movie: self.show_movie_detail(m))
-            )
+        for index, movie in enumerate(movies):
+            if index == 0:
+                self.ids.movie_list.add_widget(OneLineListItem(text=movie))
+            else:
+                self.ids.movie_list.add_widget(
+                    OneLineListItem(text=movie, on_release=lambda x, m=movie: self.show_movie_detail(m))
+                )
 
     def filter_movies(self, query):
         filtered_movies = [movie for movie in self.movies if query.lower() in movie.lower()]

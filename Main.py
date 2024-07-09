@@ -1,3 +1,6 @@
+
+from kivy import Config
+from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
@@ -12,6 +15,9 @@ from Pages.MyReviews import MyReviews
 
 class Base:
     pass
+
+Config.set('graphics', 'fullscreen', 'auto')
+Window.size = (400, 600)
 
 class Example(MDApp):
     def build(self):

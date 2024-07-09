@@ -4,12 +4,12 @@
         id: search_field
         hint_text: "Search"
         size_hint_x: None
-        width: "300dp"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        width: "265dp"
+        pos_hint: {'center_x': 0.45, 'center_y': 0.8}
 
     MDFloatingActionButton:
         icon: "magnify"
-        pos_hint: {'center_x': 0.75, 'center_y': 0.8}
+        pos_hint: {'center_x': 0.85, 'center_y': 0.8}
         md_bg_color: app.theme_cls.primary_color
         on_release: root.search(search_field.text)
         type: "small"

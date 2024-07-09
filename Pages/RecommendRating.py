@@ -1,3 +1,4 @@
+import requests
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.list import OneLineListItem
 from kivymd.app import MDApp
@@ -8,36 +9,30 @@ from All import token_store, logout
 class RecommendRating(Screen):
     def on_enter(self):
         Home.update_right_action_items(self)
-    #     self.load_movies()
 
-    def load_movies(self):
-        self.movies = []
-        with open('movies1.csv', 'r') as csvfile:
-            reader = csv.reader(csvfile)
-            for row in reader:
-                title = row[1]
-                self.movies.append(title)
-        self.display_movies(self.movies)
+    def on_leave(self):
+        self.ids.search_field.text = ""
 
-    def display_movies(self, movies):
+    def fetch_recommendations(self, movie_title):
+        token = token_store.get("vars")["token"]
+        headers = {"Authorization": f"{token}"}
+        response = requests.get(f"http://127.0.0.1:8000/api/rec_rat?movie={movie_title}", headers=headers)
+
+        if response.status_code == 200:
+            recommendations = response.json()["recommendations"]
+            self.display_recommendations(recommendations)
+        else:
+            print(response.status_code)
+            print("Failed to fetch recommendations")
+
+    def display_recommendations(self, recommendations):
         self.ids.movie_list.clear_widgets()
-        for movie in movies:
-            self.ids.movie_list.add_widget(
-                OneLineListItem(text=movie, on_release=lambda x, m=movie: self.show_movie_detail(m))
-            )
-
-    def filter_movies(self, query):
-        self.load_movies()
-        filtered_movies = [movie for movie in self.movies if query.lower() in movie.lower()]
-        self.display_movies(filtered_movies)
+        for recommendation in recommendations:
+            item = OneLineListItem(text=f"{recommendation['title']} - Correlation: {recommendation['Correlation']:.2f}")
+            self.ids.movie_list.add_widget(item)
 
     def search(self, query):
-        self.filter_movies(query)
-
-    def show_movie_detail(self, title):
-        app = MDApp.get_running_app()
-        app.root.current = 'movie_detail'
-        app.root.get_screen('movie_detail').display_movie_detail(title)
+        self.fetch_recommendations(query)
 
     def logout(self):
         logout(self)

@@ -16,7 +16,7 @@ class Register(Screen):
     def previous(self):
         self.ids.slide.load_previous()
         self.ids.email.text_color = (0, 0, 0, 1)
-        self.ids.Email.text_color = (0, 0, 0, 1)
+        self.ids.Email.text_color = (1, 1, 1, 1)
         self.ids.email.icon = "numeric-1-circle"
 
     def next1(self):
@@ -82,11 +82,11 @@ class Register(Screen):
 
     def show_error(self, widget):
         widget.error = True
-        widget.text_color = (1, 0, 0, 1)  # Red color for error
+        widget.text_color = (1, 0, 0, 1)
 
     def clear_error(self, widget):
         widget.error = False
-        widget.text_color = (0, 0, 0, 1)  # Black color when no error
+        widget.text_color = (0, 0, 0, 1)
 
     def register(self):
         if not self.validate_inputs():
